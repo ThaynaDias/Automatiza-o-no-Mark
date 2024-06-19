@@ -1,0 +1,22 @@
+{
+  "name": "cypress-express-mark",
+  "version": "1.0.0",
+  "description": "Projeto de testes de ponta a ponta no Mark",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThaynaDias/Automatiza-o-no-Mark.git"
+  },
+  "author": "Thayná Dias",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ThaynaDias/Automatiza-o-no-Mark/issues"
+  },
+  "homepage": "https://github.com/ThaynaDias/Automatiza-o-no-Mark#readme",
+  "devDependencies": {
+    "cypress": "^12.2.0"
+  }
+}
