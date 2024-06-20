@@ -1,21 +1,32 @@
 describe('tarefas', () => {
     it('deve cadastrar uma nova tarefa', () => {
 
-        cy.request({
-            url: 'http://localhost:3333/helper/tasks',
-            method: 'DELETE',
-            body: {name: 'Ler livro js'}
+        const taskName = 'Ler um livro de Nodejs'
 
-        }).then(response => {
+        cy.removeTaskByName(taskName)
+        cy.createTask(taskName)
+        cy.contains('main div  p', taskName).should('be.visible')
+    })
 
-            expect(response.status).to.eq(204)
-        })
-        
-        cy.visit('http://localhost:3000/')
-        cy.get('input[placeholder="Add a new Task"]').type("Ler livro js")
 
-        cy.contains('button', 'Create').click()
+    it ('Não deve cadastrar tarefas duplicadas', () => {
 
-        cy.contains('main div  p', 'Ler livro js').should('be.visible')
+        const task = {
+            name: 'Livro de js',
+            is_done: false
+        }
+
+        cy.removeTaskByName(task.name)
+
+        // Dado que eu tenho uma tarefa duplicada
+        cy.postTask(task)
+
+        // Quando faço o cadastrado dessa tarefa
+        cy.createTask(task.name)
+
+        // Então vejo a mensagem de duplicidade
+        cy.get('.swal2-html-container')
+            .should('be.visible')
+            .should('have.text', 'Task already exists!')
     })
 })
